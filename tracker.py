@@ -9,11 +9,18 @@ def add_expense(amount: float, category: str, description: str = ""):
         category (str): Категория расхода;
         description (str, optional): Описание расхода. По умолчанию не заполнено.
     """
+
+    # При попытке рефакторинга была допущена ошибка: взято округление расходов до целого числа.
+    # При таком подходе конечные расходы отличаются от изначальных. Это помогли заметить отладочные print'ы.
+
+    # print(f"Добавляемая сумма (оригинал): {amount}") 
     expense = {
+        # 'amount': round(amount, 0),
         'amount': amount,
         'category': category,
         'description': description
     }
+    # print(f"Сумма после округления: {expense['amount']}")
     expenses.append(expense)
 
 def get_expenses():
